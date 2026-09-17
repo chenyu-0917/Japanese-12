@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>核心詞彙 200｜日本語ノート</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎌</text></svg>" />
+<link rel="stylesheet" href="css/style.css" />
+<script src="data/vocab.js" defer></script>
+<script src="js/app.js" defer></script>
+</head>
+<body data-page="vocab">
+<div class="app-shell">
+  <nav class="spine" id="spine" aria-label="章節導覽"></nav>
+  <main>
+    <h1>📖 核心詞彙 200</h1>
+    <p class="lede">依「旅行、日常對話、N2」的使用場景排序，圓點顏色代表優先級：<span style="color:var(--vermillion);">●</span> 第1〜4週基礎必學、<span style="color:var(--ink);">●</span> 第5〜8週生活應用、<span style="color:var(--moss);">●</span> 第9〜12週進階與N2導向。學會的單字可以打勾，方便追蹤複習進度。</p>
+
+    <div class="filter-bar">
+      <select id="filter-category" aria-label="依場景篩選"></select>
+      <select id="filter-tier" aria-label="依優先級篩選">
+        <option value="all">全部優先級</option>
+        <option value="1">🔴 第1-4週必學</option>
+        <option value="2">🔵 第5-8週應用</option>
+        <option value="3">🟢 第9-12週進階</option>
+      </select>
+      <input type="search" id="filter-search" placeholder="搜尋單字、讀音或中文意思…" />
+      <label style="display:flex;align-items:center;gap:6px;font-size:14px;color:var(--text-soft);white-space:nowrap;">
+        <input type="checkbox" id="filter-unlearned" /> 只看還沒學會的
+      </label>
+    </div>
+    <p id="vocab-count" class="lede" style="margin-bottom:10px;"></p>
+
+    <div id="vocab-grid"></div>
+  </main>
+</div>
+</body>
+</html>
