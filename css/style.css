@@ -502,6 +502,114 @@ ul.goal-list li, ul.task-list li {
 .mistake-box .correct { color: var(--moss-dark); font-weight: 500; font-size: 14px; }
 .mistake-box .correct::before { content: '✓ '; }
 
+/* ---------- 50音表 ---------- */
+.kana-controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 16px 0 24px 0;
+}
+
+.kana-controls .btn-toggle {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  padding: 8px 16px;
+  border-radius: 99px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.kana-controls .btn-toggle.active {
+  background: var(--ink);
+  color: #fff;
+}
+
+.kana-controls label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  color: var(--text-soft);
+}
+
+.kana-section-title {
+  font-family: var(--serif);
+  font-size: 15px;
+  color: var(--ink);
+  margin: 30px 0 12px 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+.kana-table { margin-bottom: 8px; }
+
+.kana-row {
+  display: grid;
+  grid-template-columns: 52px repeat(5, 1fr);
+  gap: 8px;
+  margin-bottom: 8px;
+  align-items: stretch;
+}
+
+.kana-row.youon-row { grid-template-columns: 60px repeat(3, 1fr); }
+
+.kana-row-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+.kana-cell {
+  font-family: var(--sans);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 6px 8px 6px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.12s ease, border-color 0.12s ease, transform 0.08s ease;
+}
+
+.kana-cell:hover { border-color: var(--ink); }
+.kana-cell:active { transform: scale(0.96); }
+
+.kana-cell.speaking { background: #EAF0F5; border-color: var(--ink); }
+
+.kana-cell .char {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--ink-dark);
+  display: block;
+}
+
+.kana-cell .romaji {
+  font-size: 11.5px;
+  color: var(--text-soft);
+  display: block;
+  margin-top: 3px;
+}
+
+.kana-cell.hide-romaji .romaji { visibility: hidden; }
+
+.kana-cell.empty {
+  background: transparent;
+  border: none;
+  cursor: default;
+}
+
+@media (max-width: 640px) {
+  .kana-row { grid-template-columns: 36px repeat(5, 1fr); gap: 5px; }
+  .kana-row.youon-row { grid-template-columns: 44px repeat(3, 1fr); }
+  .kana-cell .char { font-size: 19px; }
+}
+
 /* ---------- 通用元件 ---------- */
 .btn {
   display: inline-block;
