@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>50音表｜日本語ノート</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎌</text></svg>" />
+<link rel="stylesheet" href="css/style.css" />
+<script src="data/kana.js" defer></script>
+<script src="js/app.js" defer></script>
+</head>
+<body data-page="kana">
+<div class="app-shell">
+  <nav class="spine" id="spine" aria-label="章節導覽"></nav>
+  <main>
+    <h1>🈶 50音表</h1>
+    <p class="lede">先把這張表練到反射動作，之後的單字跟文法都會輕鬆很多。點任何一個字都會唸出發音（需要瀏覽器支援語音合成，大部分手機／電腦瀏覽器都可以），開啟「練習模式」可以隱藏羅馬拼音，考考自己還記不記得。</p>
+
+    <div class="kana-controls">
+      <button type="button" id="kana-script-h" class="btn-toggle active">平假名</button>
+      <button type="button" id="kana-script-k" class="btn-toggle">片假名</button>
+      <label><input type="checkbox" id="kana-practice-mode" /> 🙈 練習模式（隱藏羅馬拼音）</label>
+    </div>
+
+    <div id="kana-table-wrap"></div>
+  </main>
+</div>
+</body>
+</html>
