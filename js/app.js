@@ -51,8 +51,8 @@ function buildSpine(activePage, activeWeek) {
 
   const topLinks = [
     { href: "index.html", label: "首頁總覽", icon: "🏠", page: "home" },
-    { href: "kana.html", label: "50音表", icon: "🈶", page: "kana" },
     { href: "plan.html", label: "12週計畫", icon: "📅", page: "plan" },
+    { href: "kana.html", label: "50音表", icon: "📖", page: "kana" },
     { href: "vocab.html", label: "核心詞彙 200", icon: "📖", page: "vocab" },
     { href: "grammar.html", label: "文法課程", icon: "✍️", page: "grammar" }
   ];
