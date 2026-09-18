@@ -51,6 +51,7 @@ function buildSpine(activePage, activeWeek) {
 
   const topLinks = [
     { href: "index.html", label: "首頁總覽", icon: "🏠", page: "home" },
+    { href: "kana.html", label: "50音表", icon: "🈶", page: "kana" },
     { href: "plan.html", label: "12週計畫", icon: "📅", page: "plan" },
     { href: "vocab.html", label: "核心詞彙 200", icon: "📖", page: "vocab" },
     { href: "grammar.html", label: "文法課程", icon: "✍️", page: "grammar" }
@@ -316,6 +317,88 @@ function drawVocabGrid() {
   });
 }
 
+// ============ 50音表 ============
+let kanaState = { script: "h", hideRomaji: false };
+
+function speakKana(char) {
+  try {
+    if (!("speechSynthesis" in window)) return;
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(char);
+    utter.lang = "ja-JP";
+    utter.rate = 0.85;
+    window.speechSynthesis.speak(utter);
+  } catch (e) {
+    /* 部分瀏覽器或裝置可能不支援語音合成，安靜地忽略即可 */
+  }
+}
+
+function buildKanaCell(cell) {
+  if (!cell) return `<div class="kana-cell empty"></div>`;
+  const char = kanaState.script === "h" ? cell.h : cell.k;
+  return `<button type="button" class="kana-cell ${kanaState.hideRomaji ? "hide-romaji" : ""}" data-char="${esc(char)}">
+    <span class="char">${esc(char)}</span>
+    <span class="romaji">${esc(cell.r)}</span>
+  </button>`;
+}
+
+function buildKanaGroup(title, rows, isYouon) {
+  const rowsHtml = rows.map(row => `
+    <div class="kana-row ${isYouon ? "youon-row" : ""}">
+      <div class="kana-row-label">${esc(row.label)}</div>
+      ${row.cells.map(buildKanaCell).join("")}
+    </div>
+  `).join("");
+  return `<h3 class="kana-section-title">${title}</h3><div class="kana-table">${rowsHtml}</div>`;
+}
+
+function renderKanaTable() {
+  const el = document.getElementById("kana-table-wrap");
+  if (!el) return;
+  el.innerHTML =
+    buildKanaGroup("清音", KANA_DATA.seion, false) +
+    buildKanaGroup("濁音", KANA_DATA.dakuon, false) +
+    buildKanaGroup("半濁音", KANA_DATA.handakuon, false) +
+    buildKanaGroup("拗音", KANA_DATA.youon, true);
+
+  el.querySelectorAll(".kana-cell:not(.empty)").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const char = btn.dataset.char;
+      btn.classList.add("speaking");
+      speakKana(char);
+      setTimeout(() => btn.classList.remove("speaking"), 400);
+    });
+  });
+}
+
+function renderKana() {
+  const el = document.getElementById("kana-table-wrap");
+  if (!el) return;
+
+  const btnH = document.getElementById("kana-script-h");
+  const btnK = document.getElementById("kana-script-k");
+  const practiceToggle = document.getElementById("kana-practice-mode");
+
+  btnH.addEventListener("click", () => {
+    kanaState.script = "h";
+    btnH.classList.add("active");
+    btnK.classList.remove("active");
+    renderKanaTable();
+  });
+  btnK.addEventListener("click", () => {
+    kanaState.script = "k";
+    btnK.classList.add("active");
+    btnH.classList.remove("active");
+    renderKanaTable();
+  });
+  practiceToggle.addEventListener("change", (e) => {
+    kanaState.hideRomaji = e.target.checked;
+    renderKanaTable();
+  });
+
+  renderKanaTable();
+}
+
 // ============ 初始化 ============
 document.addEventListener("DOMContentLoaded", () => {
   const page = document.body.dataset.page;
@@ -324,4 +407,5 @@ document.addEventListener("DOMContentLoaded", () => {
   if (page === "plan") renderPlan();
   if (page === "grammar") renderGrammar();
   if (page === "vocab") renderVocab();
+  if (page === "kana") renderKana();
 });
