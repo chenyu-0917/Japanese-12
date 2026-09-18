@@ -6,7 +6,7 @@ const PLAN_DATA = [
   {
     week: 1,
     theme: "50音總複習：平假名",
-    icon: "🈶",
+    icon: "📖",
     grammarRef: 1,
     grammarTitle: "です／ではありません",
     vocabScenario: "問候與自我介紹",
